@@ -18,6 +18,7 @@ export default function Nav() {
           {path === "/about-us" ? " 😋" : null}
         </li>
       </ul>
+      <hr />
     </nav>
   );
 }
