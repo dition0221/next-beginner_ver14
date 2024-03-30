@@ -83,4 +83,4 @@
       - 미 사용 시 자동으로 server component가 됨
     - server component에서 DB나 data fetch에 대해 보안을 신경쓰지 않아도 됨
       - 해당 코드는 client로는 절대 가지 않기 때문
-- **24-03-30 : #2.7 ~ #2.10 / App Router (2)**
+- **24-03-30 : #2.7 ~ #2.10 + #3.0 ~ #3.3 / App Router (2) + Data Fetching (1)**
