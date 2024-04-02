@@ -84,3 +84,107 @@
     - server component에서 DB나 data fetch에 대해 보안을 신경쓰지 않아도 됨
       - 해당 코드는 client로는 절대 가지 않기 때문
 - **24-03-30 : #2.7 ~ #2.10 + #3.0 ~ #3.3 / App Router (2) + Data Fetching (1)**
+  - <a href="https://app.quicktype.io/" target="_blank">빠르고 쉽게 interface를 만드는 사이트</a>
+  - Route Groups
+    - URL주소를 생성하지 않으면서, 폴더로 파일들을 묶을 수 있는 기능
+    - 사용법 : 폴더명을 소괄호로 묶어서 사용
+      - ex. `(home)/page.tsx`
+    - App 전체에 대한 `layout.tsx`와 `not-found.tsx`는 app 폴더 최상단에 위치해야 함
+  - Layout.tsx
+    - metadata와 RootLayout을 가지고 있음
+    - Layout은 App 전체를 담당하지만, 특정 page에 대한 layout 생성 가능
+      - layout들은 중첩됨 (상쇄 x)
+      - 생성법 : 사용할 URL 폴더 내에 layout.tsx 파일을 생성
+      - 사용법 : html, body 태그 등은 불필요
+      - ex.
+        ```
+        export default function AboutUsLayout({
+          children,
+        }: Readonly<{
+          children: React.ReactNode;
+        }>) {
+          return (
+            <div>
+              {children}
+              <span>&copy; NextJS is good</span>
+            </div>
+          );
+        }
+        ```
+  - Metadata
+    - 내보내야하는 object 형식이며, HTML의 head 부분에 정의 됨
+      - page 또는 layout에서만 정의 가능 (일반 component는 불가)
+      - server component에서만 가능 (client component에서 사용 불가)
+      - 여러 개의 metadata가 있을 시 병합됨
+    - 기본형
+      ```
+      export const metadata: Metadata = {
+        title: 제목,
+        description: 설명,
+        ......
+      };
+      ```
+    - RootLayout에서 title에 대해 반복되는 문자열 template를 설정할 수 있음
+      - 기본형
+        ```
+        title: {
+          template: "%s 반복문자열",
+          default: "기본값",
+        },
+        ```
+      - `%s` : Page title 문자열 값이 들어가는 자리
+      - `default` : 페이지가 없는 경우 등에서의 title 값
+      - ex.
+        ```
+        title : {
+          template: "%s | Next Movies",
+          default: "Next Movies",
+        },
+        ```
+    - <a href="https://nextjs.org/docs/app/building-your-application/optimizing/metadata" target="_blank">공식문서</a>
+    - <a href="https://nextjs.org/docs/app/building-your-application/optimizing/metadata#dynamic-metadata" target="_blank">dynamic metadata 공식문서</a>
+  - Dynamic Route
+    - 생성법 : 폴더명을 대괄호로 묶어서 사용
+      - ex. `app/movies/[id]/page.tsx`
+    - props를 통해 params와 searchParams 값을 가져올 수 있음
+      - ex.
+        ```
+        interface IMovieDetailProps {
+          params: {
+            id: string;
+          };
+        }
+        export default function MovieDetail({ params: { id } }: IMovieDetailProps) {
+          return <div>Movie {id}</div>;
+        }
+        ```
+  - client component (use client)에서의 data fetch
+    - API 키 등 보안요소를 숨길 수 없음
+    - 로딩 상태가 존재함 (로딩 상태를 직접 구현해야 함)
+  - server component에서의 data fetch
+    - client component와는 다르게 `useState`, `useEffect`, 로딩 등을 사용하지 않아도 됨
+      - framework가 알아서 해줌
+    - NextJS가 자동으로 data를 캐싱시켜 줌 (캐싱을 위해 다른 라이브러리를 사용할 필요 x)
+      - 로딩 상태가 없는 것은 아니지마, 캐싱이 있기 때문에 빠르게 느껴짐
+        - 로딩 상태가 Back-End에서 이루어짐
+        - 단점 : 로딩 중에는 사용자를 위한 UI가 없음
+      - 첫 번째 요청에서 fetch된 캐싱 data만 받음
+        - 최신 data가 필요 시 revalidation 등을 이용
+    - 사용법
+      1. fetch 함수를 React 컴포넌트 밖에서 정의하기
+      2. React 컴포넌트는 async로 사용하며, 내에서 fetch 함수 실행하기
+    - ex.
+      ```
+      async function getMovies() {
+        return await fetch(URL).then((res) => res.json())
+      }
+      export default async function Home() {
+        const movies = await getMovies();
+        return <div>{JSON.stringify(movies)}</div>;
+      }
+      ```
+  - Loading Component
+    - server component에서 로딩 UI를 만들 수 있음
+      - 콘텐츠가 로딩되는 동안 서버에서 즉시 로딩 상태를 표시하며, rendering 완료 시 새 콘텐츠가 자동으로 교체됨
+    - 사용법 : `loading.tsx` 파일을 생성하여 사용 (`page.tsx` 옆에 위치해야 함)
+- **24-04-02 : #3.4 ~ #3.8 / Data Fetching (2)**

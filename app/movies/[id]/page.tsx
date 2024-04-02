@@ -1,3 +1,8 @@
+import { Suspense } from "react";
+// COMPONENTS
+import MovieInfo from "@/components/movie-info";
+import MovieVideos from "@/components/movie-videos";
+
 interface IMovieDetailProps {
   params: {
     id: string;
@@ -5,7 +10,14 @@ interface IMovieDetailProps {
 }
 
 export default function MovieDetail({ params: { id } }: IMovieDetailProps) {
-  console.log(id);
-
-  return <div>Movies {id}</div>;
+  return (
+    <div>
+      <Suspense fallback={<h1>Loading movie info..</h1>}>
+        <MovieInfo id={id} />
+      </Suspense>
+      <Suspense fallback={<h1>Loading movie videos..</h1>}>
+        <MovieVideos id={id} />
+      </Suspense>
+    </div>
+  );
 }
