@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 // CSS: Tailwind
-import "@/app/globals.css";
+import "@/styles/globals.css";
 // COMPONENTS
 import Nav from "@/components/nav";
 
@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body>
+      <body className="bg-black text-white">
         <Nav />
         {children}
       </body>

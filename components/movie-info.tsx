@@ -53,7 +53,7 @@ interface SpokenLanguage {
 
 // API
 async function getMovie(id: string) {
-  await new Promise((resolve) => setTimeout(resolve, 5000));
+  await new Promise((resolve) => setTimeout(resolve, 5000)); // !!!
   return (await fetch(`${API_URL}/${id}`).then((res) =>
     res.json()
   )) as IMovieDetail;

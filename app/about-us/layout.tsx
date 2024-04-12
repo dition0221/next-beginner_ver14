@@ -6,7 +6,7 @@ export default function AboutUsLayout({
   return (
     <>
       {children}
-      <span>&copy; NextJS is good</span>
+      <footer>&copy; NextJS is good</footer>
     </>
   );
 }

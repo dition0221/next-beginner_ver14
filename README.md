@@ -10,8 +10,6 @@
 
 <img src="https://img.shields.io/badge/Next.js-000?style=flat-square&logo=nextdotjs&logoColor=white"/> <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white"/> <img src="https://img.shields.io/badge/Tailwind CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white"/>
 
-<!-- <img src="https://img.shields.io/badge/React Hook Form-EC5990?style=flat-square&logo=reacthookform&logoColor=white"/> <img src="https://img.shields.io/badge/SWR-000?style=flat-square&logo=swr&logoColor=white"/> -->
-
 ---
 
 - **24-03-26 : #1.2 ~ #1.6 / Introduction**
@@ -188,3 +186,33 @@
       - 콘텐츠가 로딩되는 동안 서버에서 즉시 로딩 상태를 표시하며, rendering 완료 시 새 콘텐츠가 자동으로 교체됨
     - 사용법 : `loading.tsx` 파일을 생성하여 사용 (`page.tsx` 옆에 위치해야 함)
 - **24-04-02 : #3.4 ~ #3.8 / Data Fetching (2)**
+  - Parallel Requests
+    - 한 컴포넌트 내에서 여러 개의 API를 사용 시 순차적으로 실행되기 떄문에, 요청 시간에 대한 문제가 발생함
+    - 해결 : 병렬로 요청을 동시에 실행하기
+    - (React) 기본형 : `await Promise.all([요청함수1, 요청함수2, ...]);`
+      - ex.
+        ```
+        const [movie, videos] = await Promise.all([getMovie(id), getVideos(id)]);
+        ```
+    - 단점 : 여러 개의 요청들이 모두 끝나야지만, UI를 볼 수 있음
+  - Suspense
+    - 여러 개의 요청들을 병렬로 동시에 시작하여, 각각의 결과에 따라 UI에 보여줌
+    - (React) 기본형
+      1. 각각의 API 컴포넌트를 생성하기
+      2. page 컴포넌트에서 API 컴포넌트를 `<Suspense>`로 감싸주기
+         - ex.
+           ```
+           <Suspense fallback={<h1>Loading movie info..</h1>}>
+            <MovieInfo id={id} />
+           </Suspense>
+           <Suspense fallback={<h1>Loading movie videos..</h1>}>
+            <MovieVideos id={id} />
+           </Suspense>
+           ```
+         - `fallback` : component가 await되는 동안 표시할 메시지를 render함
+         - `loading.tsx`와는 별개로 동작함
+  - Error Handling
+    - API 요청 error 시 App이 망가지는 것을 대신에, 다른 UI를 rendering할 수 있음
+    - 기본형 : `error.tsx` 파일을 생성해 사용 (`page.tsx` 파일 옆에서 사용)
+      - `"use client"`를 사용해야 함
+- **24-04-12 : #4.0 ~ #4.2 / Deployment (1)**

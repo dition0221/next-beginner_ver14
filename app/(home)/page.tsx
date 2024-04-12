@@ -1,5 +1,6 @@
 import { Metadata } from "next";
-import Link from "next/link";
+// COMPONENTS
+import Movie from "@/components/movie";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -31,13 +32,19 @@ async function getMovies() {
 
 export default async function Home() {
   const movies = await getMovies();
+
   return (
-    <div>
-      {movies.map((movie) => (
-        <li key={movie.id}>
-          <Link href={`/movies/${movie.id}`}>{movie.title}</Link>
-        </li>
-      ))}
-    </div>
+    <main>
+      <ul className="mx-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6">
+        {movies.map((movie) => (
+          <Movie
+            key={movie.id}
+            id={movie.id}
+            title={movie.title}
+            poster_path={movie.poster_path}
+          />
+        ))}
+      </ul>
+    </main>
   );
 }

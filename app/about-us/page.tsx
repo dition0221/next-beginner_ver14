@@ -5,5 +5,9 @@ export const metadata: Metadata = {
 };
 
 export default function AboutUs() {
-  return <h1>About us!</h1>;
+  return (
+    <main>
+      <h1>About us!</h1>
+    </main>
+  );
 }
