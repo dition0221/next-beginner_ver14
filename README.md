@@ -216,3 +216,29 @@
     - 기본형 : `error.tsx` 파일을 생성해 사용 (`page.tsx` 파일 옆에서 사용)
       - `"use client"`를 사용해야 함
 - **24-04-12 : #4.0 ~ #4.2 / Deployment (1)**
+  - CSS modules
+    - NextJS에서 별도의 설치/설정 없이 CSS modules를 사용 가능
+    - 먼저, global style을 설정하는 CSS 파일을 생성하여 사용
+      - 파일 경로는 상관없음
+      - RootLayout에서 global style을 import하여 사용
+    - 사용법
+      1. `파일명.module.css`로 파일 생성하기
+         - 파일 경로는 상관없음
+      2. [module.css] class명을 사용하여 CSS 작성하기
+         - ex.
+           ```
+           .nav {
+             background-color: red;
+           }
+           ```
+      3. [component] CSS파일을 불러와서 className 적용하기
+         - ex.
+           ```
+           import styles from "CSS모듈파일경로";
+           <nav className={styles.nav} />
+           ```
+    - 장점
+      1. 랜덤한 class명을 가지므로, class 충돌이 없음
+      2. 다른 파일에서 중복 사용 가능
+    - 단점 : 자동완성기능이 없음
+- **24-04-16 : #4.3 ~ #4.6 / Deployment (2)**

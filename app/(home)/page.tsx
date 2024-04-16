@@ -1,4 +1,6 @@
 import { Metadata } from "next";
+// LIBS
+import { API_URL } from "@/libs/constants";
 // COMPONENTS
 import Movie from "@/components/movie";
 
@@ -22,9 +24,6 @@ interface IMovie {
   vote_average: number;
   vote_count: number;
 }
-
-// API
-export const API_URL = "https://nomad-movies.nomadcoders.workers.dev/movies";
 
 async function getMovies() {
   return (await fetch(API_URL).then((res) => res.json())) as IMovie[];

@@ -1,4 +1,5 @@
-import { API_URL } from "@/app/(home)/page";
+// LIBS
+import { API_URL } from "@/libs/constants";
 
 interface IMovieVideo {
   iso_639_1: string;
@@ -15,7 +16,6 @@ interface IMovieVideo {
 
 // API
 async function getVideos(id: string) {
-  await new Promise((resolve) => setTimeout(resolve, 3000)); // !!!
   return (await fetch(`${API_URL}/${id}/videos`).then((res) =>
     res.json()
   )) as IMovieVideo[];
@@ -28,5 +28,19 @@ interface IMovieVideosProps {
 export default async function MovieVideos({ id }: IMovieVideosProps) {
   const videos = await getVideos(id);
 
-  return <h6>{JSON.stringify(videos)}</h6>;
+  return (
+    <section className="grid gap-3 grid-cols-[repeat(auto-fit,minmax(300px,1fr))]">
+      {videos.map((video) => (
+        <iframe
+          className="rounded-lg left-0 right-0 m-auto"
+          key={video.id}
+          src={`https://youtube.com/embed/${video.key}`}
+          title={video.name}
+          allowFullScreen
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+        />
+      ))}
+    </section>
+  );
 }

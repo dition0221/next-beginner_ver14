@@ -1,3 +1,3 @@
 export default function MovieDetailLoading() {
-  return <div>loading a movie :id..</div>;
+  return <div className="text-center">loading a movie :id..</div>;
 }

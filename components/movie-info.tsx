@@ -1,4 +1,5 @@
-import { API_URL } from "@/app/(home)/page";
+// LIBS
+import { API_URL } from "@/libs/constants";
 
 interface IMovieDetail {
   adult: boolean;
@@ -52,8 +53,7 @@ interface SpokenLanguage {
 }
 
 // API
-async function getMovie(id: string) {
-  await new Promise((resolve) => setTimeout(resolve, 5000)); // !!!
+export async function getMovie(id: string) {
   return (await fetch(`${API_URL}/${id}`).then((res) =>
     res.json()
   )) as IMovieDetail;
@@ -66,5 +66,41 @@ interface IMovieInfoProps {
 export default async function MovieInfo({ id }: IMovieInfoProps) {
   const movie = await getMovie(id);
 
-  return <h6>{JSON.stringify(movie)}</h6>;
+  return (
+    <section className="grid grid-cols-2">
+      <img
+        src={movie.poster_path}
+        alt="movie poster"
+        className="w-3/4 max-w-[500px] rounded-lg"
+      />
+      <article className="space-y-2 sm:space-y-3 text-xs sm:text-sm md:text-base">
+        <div>
+          <h1 className="text-base sm:text-xl md:text-2xl font-semibold">
+            {movie.title}
+          </h1>
+          <small className="text-gray-300">{movie.release_date + ""}</small>
+        </div>
+        <div className="space-x-4">
+          <span>⭐ {movie.vote_average.toFixed(1)}</span>
+          <span>🕒 {movie.runtime} mins</span>
+        </div>
+        {movie.homepage ? (
+          <a
+            href={movie.homepage}
+            target="_blank"
+            className="inline-block px-2 py-0.5 rounded-md bg-gray-600 hover:bg-gray-700 hover:underline transition"
+          >
+            Homepage &rarr;
+          </a>
+        ) : null}
+        <p>{movie.overview}</p>
+        <div className="space-x-4">
+          {movie.genres.map((g) => (
+            <span key={g.id}>#{g.name}</span>
+          ))}
+        </div>
+        {/*  */}
+      </article>
+    </section>
+  );
 }
