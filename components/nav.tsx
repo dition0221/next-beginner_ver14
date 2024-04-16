@@ -10,7 +10,7 @@ export default function Nav() {
 
   return (
     <nav className="sticky top-4 z-[999] my-4 py-4 px-8 bg-gray-700 w-fit mx-auto left-0 right-0 rounded-full">
-      <ul className="flex space-x-4">
+      <ul className="flex space-x-4 font-semibold text-sm md:text-base">
         <li>
           <Link
             href="/"
