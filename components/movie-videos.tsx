@@ -1,6 +1,7 @@
 // LIBS
 import { API_URL } from "@/libs/constants";
 
+/* API */
 interface IMovieVideo {
   iso_639_1: string;
   iso_3166_1: string;
@@ -14,13 +15,13 @@ interface IMovieVideo {
   id: string;
 }
 
-// API
 async function getVideos(id: string) {
   return (await fetch(`${API_URL}/${id}/videos`).then((res) =>
     res.json()
   )) as IMovieVideo[];
 }
 
+/* Component */
 interface IMovieVideosProps {
   id: string;
 }

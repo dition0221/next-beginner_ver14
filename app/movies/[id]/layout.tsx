@@ -1,14 +1,23 @@
 /* eslint-disable @next/next/no-img-element */
-import Link from "next/link";
 import { Suspense } from "react";
 // COMPONENTS
-import MenuBar from "@/components/menu-bar";
 import MovieInfo, { getMovie } from "@/components/movie-info";
+import MovieMenu from "@/components/movie-menu";
 
-interface IProps {
+interface IParams {
   params: {
     id: string;
   };
+}
+
+export async function generateMetadata({ params: { id } }: IParams) {
+  const movie = await getMovie(id);
+  return {
+    title: movie.title,
+  };
+}
+
+interface IProps extends IParams {
   children: React.ReactNode;
 }
 
@@ -16,33 +25,13 @@ export default async function MovieDetailLayout({
   params: { id },
   children,
 }: IProps) {
-  const movie = await getMovie(id);
-
   return (
     <main className="pb-10 w-5/6 sm:w-3/4 left-0 right-0 m-auto space-y-14">
       <Suspense fallback={<h1>Loading movie info..</h1>}>
-        <MovieInfo movie={movie} />
+        <MovieInfo id={id} />
       </Suspense>
-      <MenuBar>
-        <ul className="flex space-x-4">
-          <li className="hover:underline">
-            <Link href={`/movies/${id}`}>Videos</Link>
-          </li>
-          <li className="hover:underline">
-            <Link href={`/movies/${id}/credits`}>Credits</Link>
-          </li>
-          <li className="hover:underline">
-            <Link href={`/movies/${id}/providers`}>Providers</Link>
-          </li>
-          <li className="hover:underline">
-            <Link href={`/movies/${id}/similar`}>Similar</Link>
-          </li>
-        </ul>
-      </MenuBar>
+      <MovieMenu id={id} />
       {children}
-      {/* <Suspense fallback={<h1>Loading movie videos..</h1>}>
-        <MovieVideos id={id} />
-      </Suspense> */}
     </main>
   );
 }

@@ -61,11 +61,12 @@ export async function getMovie(id: string) {
 }
 
 interface IMovieInfoProps {
-  movie: IMovieDetail;
-  children?: React.ReactNode;
+  id: string;
 }
 
-export default async function MovieInfo({ movie, children }: IMovieInfoProps) {
+export default async function MovieInfo({ id }: IMovieInfoProps) {
+  const movie = await getMovie(id); // API
+
   return (
     <section className="grid grid-cols-2">
       <img

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-// UTILITIES
+// LIBS
 import { cls } from "@/libs/utils";
 // COMPONENTS
 import MenuBar from "@/components/menu-bar";
@@ -13,7 +13,7 @@ export default function Nav() {
   return (
     <nav className="sticky top-4 z-[999]">
       <MenuBar>
-        <ul className="flex space-x-4">
+        <ul className="flex space-x-6">
           <li>
             <Link
               href="/"
@@ -33,7 +33,7 @@ export default function Nav() {
                 path === "/about-us" ? "text-orange-500" : ""
               )}
             >
-              About Us
+              About-Us
             </Link>
           </li>
         </ul>
