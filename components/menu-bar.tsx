@@ -4,7 +4,7 @@ interface IProps {
 
 export default function MenuBar({ children }: IProps) {
   return (
-    <div className="my-4 py-4 px-8 bg-gray-700 w-fit mx-auto left-0 right-0 rounded-full">
+    <div className="my-4 py-4 px-8 bg-gray-700 w-fit mx-auto left-0 right-0 rounded-full font-semibold text-sm md:text-base">
       {children}
     </div>
   );

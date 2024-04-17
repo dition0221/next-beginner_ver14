@@ -88,13 +88,13 @@ export default async function MovieInfo({ movie, children }: IMovieInfoProps) {
           <a
             href={movie.homepage}
             target="_blank"
-            className="inline-block px-2 py-0.5 rounded-md bg-gray-600 hover:bg-gray-700 hover:underline transition"
+            className="inline-block px-2 py-0.5 rounded-md bg-gray-600 hover:bg-gray-700 hover:underline focus:underline focus:bg-gray-700 focus:outline-none focus:ring-1 md:focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-white transition-all"
           >
             Homepage &rarr;
           </a>
         ) : null}
         <p>{movie.overview}</p>
-        <div className="space-x-4">
+        <div className="flex flex-wrap space-x-4">
           {movie.genres.map((g) => (
             <span key={g.id}>#{g.name}</span>
           ))}
