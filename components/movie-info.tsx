@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 // LIBS
 import { API_URL } from "@/libs/constants";
 
@@ -60,12 +61,11 @@ export async function getMovie(id: string) {
 }
 
 interface IMovieInfoProps {
-  id: string;
+  movie: IMovieDetail;
+  children?: React.ReactNode;
 }
 
-export default async function MovieInfo({ id }: IMovieInfoProps) {
-  const movie = await getMovie(id);
-
+export default async function MovieInfo({ movie, children }: IMovieInfoProps) {
   return (
     <section className="grid grid-cols-2">
       <img
@@ -99,7 +99,6 @@ export default async function MovieInfo({ id }: IMovieInfoProps) {
             <span key={g.id}>#{g.name}</span>
           ))}
         </div>
-        {/*  */}
       </article>
     </section>
   );

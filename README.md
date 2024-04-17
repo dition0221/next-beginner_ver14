@@ -242,3 +242,30 @@
       2. 다른 파일에서 중복 사용 가능
     - 단점 : 자동완성기능이 없음
 - **24-04-16 : #4.3 ~ #4.6 / Deployment (2)**
+  - Dynamic Metadata
+    - 기본형
+      ```
+      export async function generateMetadata({ params, searchParams }) {
+        return {
+          title: 제목,
+          ......,
+        };
+      }
+      ```
+    - ex.
+      ```
+      export async function generateMetadata({ params: { id }}) {
+        constr movie = await getMovie(id);
+        return {
+          title: movie.title,
+        };
+      }
+      ```
+    - 같은 API를 2번 실행하지만, 데이터가 캐시에 저장하므로 상관 없음
+    - <a href="https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function" target="_blank">공식문서</a>
+  - Deployment (Vercel)
+    - 사용법
+      1. 현재 프로젝트를 GitHub에 commit 및 push하기
+      2. Vercel 홈페이지에서 `Add New... - Project`를 클릭하기
+      3. 배포할 프로젝트를 선택 및 설정하기
+- **24-04-17 : [Code Challenge] Extra pages (1)**
