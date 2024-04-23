@@ -51,7 +51,7 @@ export default async function MovieCredits({ params: { id } }: IProps) {
                   className="rounded-xl shadow-xl shadow-gray-900"
                 />
               ) : (
-                <div className="flex justify-center items-center w-[185px] h-[278px] bg-gray-900 rounded-xl">
+                <div className="flex justify-center items-center w-[185px] h-[278px] bg-gray-800 rounded-xl">
                   <span className="text-xl font-semibold">Not Found</span>
                 </div>
               )}

@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="bg-black text-white">
+      <body className="bg-neutral-900 text-white">
         <Nav />
         {children}
       </body>

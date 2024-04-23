@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import MovieInfo, { getMovie } from "@/components/movie-info";
 import MovieMenu from "@/components/movie-menu";
 
+/* Metadata */
 interface IParams {
   params: {
     id: string;
@@ -17,6 +18,7 @@ export async function generateMetadata({ params: { id } }: IParams) {
   };
 }
 
+/* Layout */
 interface IProps extends IParams {
   children: React.ReactNode;
 }

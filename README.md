@@ -269,14 +269,18 @@
       2. Vercel 홈페이지에서 `Add New... - Project`를 클릭하기
       3. 배포할 프로젝트를 선택 및 설정하기
 - **24-04-17 : [Code Challenge] Extra pages (1)**
-  - UPDATE
-    - [/movies/[id]]
-      - 레이아웃 및 메뉴바 생성
-      - Credits, Similar 콘텐츠 생성
+  - _UPDATE_
+    - _[/movies/[id]]_
+      - _레이아웃 및 메뉴바 생성_
+      - _Credits, Similar 콘텐츠 생성_
+- **24-04-23 : [Code Challenge] Extra pages (2)**
+  - _FIX_
+    - _Link 요소의 hover 다시 손보기 (home, /movies/[id]/similar)_
+  - _Doing_
+    - _[/movies/[id]/providers] 페이지 생성하기_
 
 ---
 
 - ToDo
-  - Link 요소의 hover 다시 손보기 (home, /movies/[id]/similar)
   - [/movies/[id]/providers] 페이지 생성하기
   - [/about-us] 페이지 생성하기

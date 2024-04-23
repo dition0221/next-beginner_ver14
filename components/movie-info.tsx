@@ -2,6 +2,7 @@
 // LIBS
 import { API_URL } from "@/libs/constants";
 
+/* API */
 interface IMovieDetail {
   adult: boolean;
   backdrop_path: string;
@@ -53,13 +54,13 @@ interface SpokenLanguage {
   name: string;
 }
 
-// API
 export async function getMovie(id: string) {
   return (await fetch(`${API_URL}/${id}`).then((res) =>
     res.json()
   )) as IMovieDetail;
 }
 
+/* Component */
 interface IMovieInfoProps {
   id: string;
 }
