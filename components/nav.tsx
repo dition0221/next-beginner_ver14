@@ -27,13 +27,13 @@ export default function Nav() {
           </li>
           <li>
             <Link
-              href="/about-us"
+              href="/about-me"
               className={cls(
                 "hover:underline",
-                path === "/about-us" ? "text-orange-500" : ""
+                path === "/about-me" ? "text-orange-500" : ""
               )}
             >
-              About-Us
+              About-Me
             </Link>
           </li>
         </ul>

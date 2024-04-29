@@ -42,7 +42,8 @@ export default async function MovieCredits({ params: { id } }: IProps) {
           {credits.map((credit) => (
             <li
               key={credit.id}
-              className="pb-4 flex flex-col items-center text-center text-sm sm:text-base"
+              className="pb-4 flex flex-col items-center text-center text-sm
+                sm:text-base"
             >
               {credit.profile_path ? (
                 <img
@@ -51,7 +52,10 @@ export default async function MovieCredits({ params: { id } }: IProps) {
                   className="rounded-xl shadow-xl shadow-gray-900"
                 />
               ) : (
-                <div className="flex justify-center items-center w-[185px] h-[278px] bg-gray-800 rounded-xl">
+                <div
+                  className="flex justify-center items-center w-[185px] h-[278px]
+                    bg-gray-800 rounded-xl"
+                >
                   <span className="text-xl font-semibold">Not Found</span>
                 </div>
               )}

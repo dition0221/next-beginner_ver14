@@ -33,7 +33,7 @@ export default async function Home() {
   const movies = await getMovies();
 
   return (
-    <main>
+    <main className="mb-8">
       <ul
         className="mx-8 grid gap-x-4 gap-y-10
         grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"

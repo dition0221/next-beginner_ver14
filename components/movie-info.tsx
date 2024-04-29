@@ -77,7 +77,7 @@ export default async function MovieInfo({ id }: IMovieInfoProps) {
       />
       <article className="space-y-2 sm:space-y-3 text-xs sm:text-sm md:text-base">
         <div>
-          <h1 className="text-base sm:text-xl md:text-2xl font-semibold">
+          <h1 className="font-semibold text-base sm:text-xl md:text-2xl">
             {movie.title}
           </h1>
           <small className="text-gray-300">{movie.release_date + ""}</small>

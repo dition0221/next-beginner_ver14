@@ -276,11 +276,18 @@
 - **24-04-23 : [Code Challenge] Extra pages (2)**
   - _FIX_
     - _Link 요소의 hover 다시 손보기 (home, /movies/[id]/similar)_
-  - _Doing_
+  - _DOING_
     - _[/movies/[id]/providers] 페이지 생성하기_
+- **24-04-29 : [Code Challenge] Extra pages (3)**
+  - _UPDATE_
+    - _[/movies/[id]/providers] 페이지 생성_
+    - _로딩 페이지 skeleton 생성_
+      - _[/], [/movies/:id - Videos], [/movies/:id/similar]_
+      - _bg-neutral-800 animate-pulse_
+    - _[/about-me] 페이지 생성_
 
 ---
 
 - ToDo
-  - [/movies/[id]/providers] 페이지 생성하기
-  - [/about-us] 페이지 생성하기
+  - favicon
+  - open-graph
