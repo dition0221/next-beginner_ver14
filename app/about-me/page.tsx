@@ -13,7 +13,7 @@ export default function AboutUs() {
       <img
         src={profileImage.src}
         alt="profile image"
-        className="aspect-square rounded-full mt-4
+        className="aspect-square rounded-full mt-8
           size-1/2 sm:size-5/12 md:size-2/5 lg:size-1/3 xl:size-1/4 2xl:size-1/5"
       />
       <p

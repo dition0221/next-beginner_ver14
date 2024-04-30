@@ -10,7 +10,7 @@ interface IMovieProvider {
 
 interface Country {
   link: string;
-  buy: Buy[];
+  buy?: Buy[];
   rent?: Buy[];
   flatrate?: Buy[];
 }
@@ -51,16 +51,16 @@ export default async function MovieProviders({ params: { id } }: IProps) {
                 - {country} -
               </h1>
 
-              <div className="grid grid-cols-2 divide-x-2 *:text-xs md:*:text-sm">
-                <div className="space-y-4">
+              {providers.flatrate ? (
+                <div className="space-y-4 *:text-xs md:*:text-sm">
                   <h2 className="text-base font-semibold text-center">
-                    &lt; BUY &gt;
+                    &lt; FLATRATE &gt;
                   </h2>
                   <div className="grid grid-cols-2 gap-x-2 gap-y-4">
-                    {providers.buy.map((provider) => (
+                    {providers.flatrate?.map((provider) => (
                       <div key={provider.provider_id} className="space-y-1">
                         <img
-                          src={provider.logo_path}
+                          src={`https://image.tmdb.org/t/p/w300${provider.logo_path}`}
                           alt="provider logo"
                           className="size-12 m-auto"
                         />
@@ -69,25 +69,49 @@ export default async function MovieProviders({ params: { id } }: IProps) {
                     ))}
                   </div>
                 </div>
+              ) : (
+                <div className="grid grid-cols-2 divide-x-2 *:text-xs md:*:text-sm">
+                  <div className="space-y-4">
+                    <h2 className="text-base font-semibold text-center">
+                      &lt; BUY &gt;
+                    </h2>
+                    <div className="grid grid-cols-2 gap-x-2 gap-y-4">
+                      {providers.buy?.map((provider) => (
+                        <div key={provider.provider_id} className="space-y-1">
+                          <img
+                            src={provider.logo_path}
+                            alt="provider logo"
+                            className="size-12 m-auto"
+                          />
+                          <p className="text-center">
+                            {provider.provider_name}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
 
-                <div className="space-y-4">
-                  <h2 className="text-base font-semibold text-center">
-                    &lt; RENT &gt;
-                  </h2>
-                  <div className="grid grid-cols-2 gap-x-2 gap-y-4">
-                    {providers.rent?.map((provider) => (
-                      <div key={provider.provider_id} className="space-y-1">
-                        <img
-                          src={provider.logo_path}
-                          alt="provider logo"
-                          className="size-12 m-auto"
-                        />
-                        <p className="text-center">{provider.provider_name}</p>
-                      </div>
-                    ))}
+                  <div className="space-y-4">
+                    <h2 className="text-base font-semibold text-center">
+                      &lt; RENT &gt;
+                    </h2>
+                    <div className="grid grid-cols-2 gap-x-2 gap-y-4">
+                      {providers.rent?.map((provider) => (
+                        <div key={provider.provider_id} className="space-y-1">
+                          <img
+                            src={provider.logo_path}
+                            alt="provider logo"
+                            className="size-12 m-auto"
+                          />
+                          <p className="text-center">
+                            {provider.provider_name}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
             </a>
           ))}
         </section>

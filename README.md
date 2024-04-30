@@ -285,9 +285,9 @@
       - _[/], [/movies/:id - Videos], [/movies/:id/similar]_
       - _bg-neutral-800 animate-pulse_
     - _[/about-me] 페이지 생성_
-
----
-
-- ToDo
-  - favicon
-  - open-graph
+- **24-04-30 : [Code Challenge] Extra pages (4)**
+  - _FIX_
+    - _[/movies/[id]/providers] `buy`, `rent`를 제외한 키명을 가질경우의 Error 해결_
+  - _UPDATE_
+    - _favicon_
+    - _open-graph_
